@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require js-routes
 //= require vendor/modernizr
 //= require foundation
 //= require_tree .

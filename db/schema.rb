@@ -11,9 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140318172729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "animals", force: true do |t|
+    t.integer  "shelter_id"
+    t.text     "breed"
+    t.text     "shelter_pet_id"
+    t.text     "name"
+    t.text     "address"
+    t.text     "city"
+    t.text     "state"
+    t.text     "zip"
+    t.text     "phone"
+    t.text     "fax"
+    t.text     "description"
+    t.text     "sex"
+    t.text     "size"
+    t.text     "mix"
+    t.text     "animal"
+    t.text     "photos"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "animals", ["shelter_id"], name: "index_animals_on_shelter_id", using: :btree
+  add_index "animals", ["shelter_pet_id"], name: "index_animals_on_shelter_pet_id", using: :btree
+
+  create_table "shelters", force: true do |t|
+    t.text     "awo_id"
+    t.text     "name"
+    t.text     "address"
+    t.text     "city"
+    t.text     "state"
+    t.text     "zip"
+    t.text     "phone"
+    t.text     "fax"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shelters", ["awo_id"], name: "index_shelters_on_awo_id", unique: true, using: :btree
 
 end

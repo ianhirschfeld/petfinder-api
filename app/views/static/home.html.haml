@@ -1,1 +1,8 @@
-hello
+.row
+  .columns
+    %h1 AWO Pet Importer
+
+    = simple_form_for @shelter do |f|
+      = f.input :awo_id, as: :string, label: 'Organization ID'
+      = f.input :import_count, label:  'Number of pets to import'
+      #import-submit.button.radius{href: '#', title: 'Import pets'} Import
