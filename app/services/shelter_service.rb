@@ -8,9 +8,11 @@ class ShelterService
   # Returns the created shelter
   def self.create(attrs)
     shelter = Shelter.new(attrs)
-    import(shelter)
-    shelter.save
-    importPets(shelter)
+    if shelter.valid?
+      import(shelter)
+      shelter.save
+      importPets(shelter)
+    end
     shelter
   end
 
