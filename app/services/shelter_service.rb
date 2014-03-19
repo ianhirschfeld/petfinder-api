@@ -10,8 +10,7 @@ class ShelterService
     shelter = Shelter.new(attrs)
     if shelter.valid?
       import(shelter)
-      shelter.save
-      import_pets(shelter)
+      import_pets(shelter) if !shelter.errors.any? && shelter.save
     end
     shelter
   end
@@ -35,16 +34,20 @@ class ShelterService
 
     data = response[:petfinder][:shelter]
 
-    address = data[:address1]['$t']
-    address += ' ' + data[:address2]['$t'] if data[:address2]['$t']
+    if data
+      address = data[:address1]['$t']
+      address += ' ' + data[:address2]['$t'] if data[:address2]['$t']
 
-    shelter.name = data[:name]['$t']
-    shelter.address = address
-    shelter.city = data[:city]['$t']
-    shelter.state = data[:state]['$t']
-    shelter.zip = data[:zip]['$t']
-    shelter.phone = data[:phone]['$t']
-    shelter.fax = data[:fax]['$t']
+      shelter.name = data[:name]['$t']
+      shelter.address = address
+      shelter.city = data[:city]['$t']
+      shelter.state = data[:state]['$t']
+      shelter.zip = data[:zip]['$t']
+      shelter.phone = data[:phone]['$t']
+      shelter.fax = data[:fax]['$t']
+    else
+      shelter.errors.add(:awo_id, 'not found')
+    end
 
     shelter
   end
