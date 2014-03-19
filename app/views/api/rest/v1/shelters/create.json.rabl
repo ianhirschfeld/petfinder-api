@@ -9,3 +9,5 @@ attributes :id,
            :state,
            :phone,
            :zip
+
+node(:animal_count) { |shelter| shelter.animals.count }
