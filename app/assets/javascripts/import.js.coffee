@@ -6,6 +6,7 @@ $(document).ready ->
     return if $(this).hasClass('disabled')
 
     disableBtn($btn)
+    clearErrors()
     clearTable()
 
     $.ajax
@@ -28,9 +29,9 @@ $(document).ready ->
         $table.show()
       error: (jqXHR, textStatus, errorThrown) ->
         enableBtn($btn)
-        console.log jqXHR
-        console.log textStatus
-        console.log errorThrown
+        _.each JSON.parse(jqXHR.responseText).errors, (msg, attr) =>
+          addError(attr, msg)
+
 
 enableBtn = ($btn) ->
   $btn.text('Import').removeClass('disabled')
@@ -47,3 +48,13 @@ clearTable = ->
   $('.fax .val', $table).text ''
   $('.animal-count .val', $table).text ''
   $table.hide()
+
+addError = (key, msg) ->
+  attribute = if key is 'awo_id'
+    'Organization ID'
+  else
+    _.str.titleize(_.str.humanize(key))
+  $('.errors').append $('<div/>', class: 'error').text("#{attribute} #{msg}.")
+
+clearErrors = ->
+  $('.errors').html('')
