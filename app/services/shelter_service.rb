@@ -50,6 +50,9 @@ class ShelterService
     animals = []
 
     data.each do |pet|
+      # Only import dogs and cats
+      next unless ['Dog', 'Cat'].include?(pet[:animal]['$t'])
+
       address = pet[:contact][:address1]['$t']
       address += ' ' + pet[:contact][:address2]['$t'] if pet[:contact][:address2]['$t']
 
