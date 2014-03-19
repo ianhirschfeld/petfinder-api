@@ -12,3 +12,7 @@
  */
 
 @import "foundation_and_overrides";
+
+.shelter-info {
+  display: none;
+}

@@ -6,3 +6,30 @@
       = f.input :awo_id, as: :string, label: 'Organization ID'
       = f.input :import_count, label:  'Number of pets to import'
       #import-submit.button.radius{href: '#', title: 'Import pets'} Import
+
+    %table.shelter-info
+      %tbody
+        %tr.name
+          %td
+            %strong Name
+          %td.val
+        %tr.awo-id
+          %td
+            %strong AWO ID
+          %td.val
+        %tr.address
+          %td
+            %strong Address
+          %td.val
+        %tr.phone
+          %td
+            %strong Phone
+          %td.val
+        %tr.fax
+          %td
+            %strong Fax
+          %td.val
+        %tr.animal-count
+          %td
+            %strong Imported Pets
+          %td.val
